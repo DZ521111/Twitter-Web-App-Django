@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+# all the installed apps in project root
 
 INSTALLED_APPS = [
     'Tweet.apps.TweetConfig',

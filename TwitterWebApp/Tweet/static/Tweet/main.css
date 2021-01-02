@@ -1,0 +1,96 @@
+:root {
+    --muted-color: rgba(255, 255, 255, 0.6);
+}
+
+body {
+  background: #000000;
+  color: var(--muted-color);
+  margin-top: 5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--muted-color);
+}
+
+ul {
+  margin: 0;
+}
+
+.bg-steel {
+  background-color:#06173b;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: var(--muted-color);
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: var(--muted-color);
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+
+/* Add More Css to improve  */
+
+
+a {
+    color: white;
+    text-underline: none;
+     text-decoration: none !important;
+}
+a:hover {
+    color: #00FBD7;
+    text-underline: none !important;
+}
+
+/* Add css for tweet */
+
+.white-important {
+    color: white;
+    font-weight: bold;
+}
+
+.full-width {
+    width: 100%
+}
+
+.btn-outline-primary {
+    border-color: white;
+    color: white !important;
+    padding: 12px 80px 12px 80px;
+    font-weight: bold;
+    background-color: #1da1f2;
+    border:0;
+    border-radius: 25px;
+}
+
+.btn:active, .btn-outline-primary:hover {
+    color: #4498a3 !important;
+    background-color: #36405e !important;
+    border-color: #468b81 !important;
+}
+
+/* Add more Css */
+
+.nav-link:hover {
+    -webkit-transition: color .2s;
+    color: white !important;
+}
+
+ul {
+    list-style: none !important;
+}
+
+.hovered-tweet {
+    background-color: #90909017;
+    border-radius: 20px;
+}
+
+.hovered-tweet {
+    border: 1px solid transparent;
+}
+
+/* progress */

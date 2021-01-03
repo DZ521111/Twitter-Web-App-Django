@@ -1,5 +1,6 @@
 {% extends "all_tweet_pages/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 !<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,6 +27,7 @@
         {% csrf_token %}
         <fieldset class="form-group">
           <legend class="mb-5 white-important">Application Login</legend>
+          <img width = "25%" src="{% static 'Tweet/logo.png' %}">
           {{ form | crispy }}
         </fieldset>
         <div class="form-group">
@@ -34,7 +36,7 @@
       </form>
       <div class="pt-3">
         <small class="text-muted">
-          If you don't have account click here to register!
+          If you don't have account <a class="ml-2" href="{% url 'register_page' %}">click here</a> to register!
         </small>
       </div>
     </div>

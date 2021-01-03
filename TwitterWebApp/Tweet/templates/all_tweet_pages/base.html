@@ -28,13 +28,14 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{% static 'Tweet/main.css' %}"
+      href="{% static 'Tweet/basic.css' %}"
     />
     <link
       rel = "stylesheet"
       type="text/css"
       href="{% static 'Tweet/style.css' %}"
     />
+    <title>twitter_web_app</title>
     </head>
         <body>
             <header class="site-header">
@@ -43,8 +44,14 @@
                         <div class="collapse navbar-collapse" id="navbarToggle">
                             <div class="navbar-nav mr-auto pl-2">
                                 <a class="nav-item nav-link" href="{% url 'home_tweet_page' %}">Home</a>
-
-                                
+                              </div>
+                                <div class="navbar-nav pr-2">
+                                  {% if user.is_authenticated %}
+                                  {% else %}
+                                      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                                      <a class="nav-item nav-link" href="{% url 'register_page' %}">Register</a>
+                                  {% endif %}
+                                </div>
                             </div>
                         </div>
                     </div>

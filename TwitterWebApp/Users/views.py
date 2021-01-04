@@ -11,7 +11,7 @@ from .all_forms import RegistrationForm
 
 # Create your views here.
 
-# login view which are built in django
+# login view which are built in
 def login(request):
     return (render(request, "all_users_pages/login.html"))
 

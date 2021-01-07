@@ -46,11 +46,7 @@
                                 <a class="nav-item nav-link" href="{% url 'home_tweet_page' %}">Home</a>
                               </div>
                                 <div class="navbar-nav pr-2">
-                                  {% if user.is_authenticated %}
-                                  {% else %}
-                                      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                                      <a class="nav-item nav-link" href="{% url 'register_page' %}">Register</a>
-                                  {% endif %}
+                                  
                                 </div>
                             </div>
                         </div>

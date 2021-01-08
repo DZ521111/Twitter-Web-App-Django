@@ -22,9 +22,15 @@ class User_Profile(models.Model):
     def following(self):
         return (Connection.objects.filter(user = self.user).count())
 
+    # number of following of perticular user
     @property
     def followers(self):
         return (Connection.objects.filter(follow_users = self.user).count())
+
+    # to save the perticular user
+    def save(self):
+        # call the save function of super (Model) class
+        super().save()
 
 # connection class Model
 class Connection (models.Model):

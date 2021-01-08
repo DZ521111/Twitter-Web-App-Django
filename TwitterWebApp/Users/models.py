@@ -13,7 +13,7 @@ from PIL import Image
 # Class Model for User Profile
 class User_Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    img = models.ImageField(default = "default_profile_pic.png", upload_to = "profile_images")
+    profile_pic = models.ImageField(default = "default_profile_pic.png", upload_to = "profile_images")
     def __str__(self):
         return (f"{self.user.username} Profile")
 
@@ -31,6 +31,14 @@ class User_Profile(models.Model):
     def save(self):
         # call the save function of super (Model) class
         super().save()
+
+        # to save the profile pic
+        img = Image.open(self.image.path)
+        if ((img.height > 300) or (img.width > 300)):
+            output_size = (280, 280)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
 
 # connection class Model
 class Connection (models.Model):

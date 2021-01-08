@@ -24,5 +24,5 @@ class User_Profile(models.Model):
 # connection class Model
 class Connection (models.Model):
     user = models.ForeignKey(User, related_name = 'user', on_delete = models.CASCADE)
-    follow_user = models.ForeignKey(User, related_name='follow_user', on_delete=models.CASCADE)
-    
+    follow_users = models.ForeignKey(User, related_name = 'follow_users', on_delete = models.CASCADE)
+    date = models.DateTimeField(auto_now_add = True)

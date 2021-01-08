@@ -14,3 +14,13 @@ from PIL import Image
 class User_Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(default = "default_profile_pic.png", upload_to = "profile_images")
+    def __str__(self):
+        return (f"{self.user.username} Profile")
+
+    @property
+    def following(self):
+        return (f'')
+
+# connection class Model
+class Connection (models.Model):
+    pass

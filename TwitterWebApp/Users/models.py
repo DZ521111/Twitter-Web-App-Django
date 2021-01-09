@@ -18,7 +18,7 @@ class User_Profile(models.Model):
 
     # number of following of perticular user
     @property
-    def following(self):
+    def followings(self):
         return (Connection.objects.filter(user = self.user).count())
 
     # number of following of perticular user
@@ -34,8 +34,8 @@ class User_Profile(models.Model):
         # to save the profile pic
         img = Image.open(self.image.path)
         if ((img.height > 300) or (img.width > 300)):
-            output_size = (280, 280)
-            img.thumbnail(output_size)
+            pic_size = (280, 280)
+            img.thumbnail(pic_size)
             img.save(self.image.path)
 
 

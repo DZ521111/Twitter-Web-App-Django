@@ -136,3 +136,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'home_tweet_page'
 LOGIN_URL = 'login'
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}

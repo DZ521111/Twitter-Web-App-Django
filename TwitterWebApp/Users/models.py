@@ -33,7 +33,7 @@ class User_Profile(models.Model):
 
         # to save the profile pic
         img = Image.open(self.profile_pic.path)
-        if ((img.height > 300) or (img.width > 300)):
+        if ((img.height > 280) or (img.width > 280)):
             pic_size = (280, 280)
             img.thumbnail(pic_size)
             img.save(self.profile_pic.path)

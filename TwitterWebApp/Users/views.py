@@ -13,7 +13,7 @@ from .all_forms import RegistrationForm
 
 # login view which are built in
 def login(request):
-    return (render(request, "all_users_pages/login.html"))
+    return (render(request, "login.html"))
 
 
 # for registration purpose here we create register method
@@ -27,4 +27,4 @@ def register(request):
             return redirect('login')
     else:
         form = RegistrationForm()
-    return render(request, 'all_users_pages/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})

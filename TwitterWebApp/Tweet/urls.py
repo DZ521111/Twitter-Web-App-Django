@@ -4,7 +4,7 @@ Author : Dhruv B Kakadiya
 '''
 
 from django.urls import path, include
-from .views import ( AllTweetView)
+from .views import ( AllTweetView )
 
 urlpatterns = [
      path('',  AllTweetView.as_view(), name='home_tweet_page'),

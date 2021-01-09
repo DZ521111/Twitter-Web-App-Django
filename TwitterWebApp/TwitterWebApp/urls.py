@@ -20,7 +20,7 @@ from Users import views as users_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', authentication_views.LoginView.as_view(template_name='all_users_pages/login.html'), name = 'login'),
+    path('login/', authentication_views.LoginView.as_view(template_name='login.html'), name = 'login'),
     path('register/', users_views.register, name='register_page'),
     path('', include("Tweet.urls")),
 ]

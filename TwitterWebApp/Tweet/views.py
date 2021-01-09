@@ -10,4 +10,4 @@ from django.views.generic import ListView
 '''
 
 class AllTweetView(LoginRequiredMixin, ListView):
-    template_name = "all_tweet.pages/home_tweet.html"
+    template_name = "home_tweet.html"

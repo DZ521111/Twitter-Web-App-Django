@@ -16,7 +16,10 @@ class User_Profile(models.Model):
     def __str__(self):
         return (f"{self.user.username} Profile")
 
-    
+    # number of following of perticular user
+    @property
+    def followings(self):
+        return (Connection.objects.filter(user = self.user).count())
 
     # number of following of perticular user
     @property

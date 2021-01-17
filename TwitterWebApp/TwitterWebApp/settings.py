@@ -80,6 +80,7 @@ WSGI_APPLICATION = 'TwitterWebApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# here we are using postgresql
 
 DATABASES = {
     'default': {

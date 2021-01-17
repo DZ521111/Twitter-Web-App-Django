@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'TwitterWebApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        'NAME': str("TwitterSdp"),
+        'USER': str("postgres"),
+        'PASSWORD': str("Dhruv@81282"),
+        'HOST': str("localhost")
     }
 }
 
@@ -129,8 +133,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'assets')
-MEDIA_URL = '/assets/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

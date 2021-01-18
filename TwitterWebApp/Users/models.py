@@ -27,7 +27,8 @@ class User_Profile(models.Model):
         return (Connection.objects.filter(follow_users = self.user).count())
 
     # to save the perticular user
-    def save(self):
+    def save(self, force_insert = False, force_update = False, using = None,
+            update_fields = None):
         # call the save function of super (Model) class
         super().save()
 

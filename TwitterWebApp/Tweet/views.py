@@ -11,3 +11,5 @@ from django.views.generic import ListView
 
 class AllTweetView(LoginRequiredMixin, ListView):
     template_name = "home_tweet.html"
+    def get_queryset(self):
+        pass

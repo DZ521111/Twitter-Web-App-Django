@@ -22,10 +22,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', authentication_views.LoginView.as_view(template_name='login.html'), name = 'login'),
+    path('login/', authentication_views.LoginView.as_view(template_name = 'login.html'), name = 'login'),
     path('register/', users_views.register, name='register_page'),
     path('', include("Tweet.urls")),
 ]
 
 # for media URLs
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#if (settings.DEBUG):
+#   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

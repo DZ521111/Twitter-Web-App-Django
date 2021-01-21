@@ -27,5 +27,5 @@ urlpatterns = [
     path('', include("Tweet.urls")),
 ]
 
-# for media URLs
+# for media URLs for profile pics
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

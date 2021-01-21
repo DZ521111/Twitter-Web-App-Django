@@ -40,7 +40,7 @@ class User_Profile(models.Model):
             img.save(self.profile_pic.path)
 
 
-# connection class Model
+# connection class Model for followers and followings
 class Connection (models.Model):
     user = models.ForeignKey(User, related_name = 'user', on_delete = models.CASCADE)
     follow_users = models.ForeignKey(User, related_name = 'follow_users', on_delete = models.CASCADE)

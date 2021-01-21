@@ -20,3 +20,9 @@ class Tweets (models.Model):
 
     def __str__(self):
         return self.content[ : 10]
+
+class Comment(models.Model):
+    content = models.TextField(max_length=150)
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_connected = models.ForeignKey(Tweets, on_delete=models.CASCADE)

@@ -37,7 +37,7 @@ class Comment (models.Model):
 # class model for records like dislike and authors
 class Preference (models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
-    post = models.ForeignKey(Tweets, on_delete = models.CASCADE)
+    tweet = models.ForeignKey(Tweets, on_delete = models.CASCADE)
     value = models.IntegerField()
     date = models.DateTimeField(auto_now = True)
 

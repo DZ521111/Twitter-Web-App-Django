@@ -16,6 +16,7 @@ class Tweets (models.Model):
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     likes = models.IntegerField(default = 0)
     dislikes = models.IntegerField(default = 0)
+    reports = models.IntegerField(default = 0)
 
     def __str__(self):
         return self.content[ : 10]

@@ -9,6 +9,10 @@ from django.views.generic import ListView
     return (render(request, 'all_tweet_pages/home_tweet.html'))
 '''
 
+# check whether there is user or not! hwo are tweeting.
+def is_users(tweet_user, logged_user):
+    return (tweet_user == logged_user)
+
 # class for viewing all tweet views
 class AllTweetView(LoginRequiredMixin, ListView):
     template_name = "home_tweet.html"

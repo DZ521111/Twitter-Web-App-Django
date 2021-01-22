@@ -8,7 +8,7 @@ from django import forms
 from .models import Comment
 
 # form for new comment
-class NewCommentForm(forms.ModelForm):
+class NewComment(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['content']

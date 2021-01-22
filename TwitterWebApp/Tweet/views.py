@@ -1,12 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
 from .models import Tweets, Comment, Preference
 from django.db.models import Count
 from django.contrib.auth.models import User, Group
 import sys
 from Users import Connection, User_Profile
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .forms import NewComment
 
 # Create your views here.
 
@@ -57,10 +58,16 @@ class AllTweetView(LoginRequiredMixin, ListView):
             follows.append(obj.follow_user)
         return Tweets.objects.filter(author__in = follows).order_by('-date_posted')
 
+
+
+
 # about us page function
 def aboutus(request):
     return (render(request, 'aboutus.html'))
 
+
+
+# class for view user tweets
 class UserTweetView(LoginRequiredMixin, ListView):
     model = Tweets
     template_name = 'user_posts.html'
@@ -68,7 +75,7 @@ class UserTweetView(LoginRequiredMixin, ListView):
     paginate_by = page_count
 
     def visible_user(self):
-        return (get_object_or_error(User, username = self.kwargs.get('username')))
+        return (get_object_or_404(User, username = self.kwargs.get('username')))
 
     def get_context_data(self, **kwargs):
         visible_user = self.visible_user()
@@ -100,5 +107,30 @@ class UserTweetView(LoginRequiredMixin, ListView):
             elif ('unfollow' in request.POST):
                     if (follows_between.count() > 0):
                         follows_between.delete()
+
+        return (self.get(self, request, *args, **kwargs))
+
+
+
+
+# class for view details of tweet
+class PostDetailView(DetailView):
+    model = Tweets
+    template_name = 'tweet_detail.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        comments_connected = Comment.objects.filter(post_connected = self.get_object()).order_by('-date_posted')
+        data['comments'] = comments_connected
+        data['form'] = NewComment(instance = self.request.user)
+        return (data)
+
+    def post(self, request, *args, **kwargs):
+        new_comment = Comment(content = request.POST.get('content'),
+                                author = self.request.user,
+                                post_connected = self.get_object())
+        new_comment.save()
 
         return (self.get(self, request, *args, **kwargs))

@@ -24,7 +24,7 @@ class User_Profile(models.Model):
     # number of following of perticular user
     @property
     def followers(self):
-        return (Connection.objects.filter(follow_users = self.user).count())
+        return (Connection.objects.filter(follow_user = self.user).count())
 
     # to save the perticular user
     def save(self, force_insert = False, force_update = False, using = None,
@@ -43,5 +43,5 @@ class User_Profile(models.Model):
 # connection class Model
 class Connection (models.Model):
     user = models.ForeignKey(User, related_name = 'user', on_delete = models.CASCADE)
-    follow_users = models.ForeignKey(User, related_name = 'follow_users', on_delete = models.CASCADE)
+    follow_user = models.ForeignKey(User, related_name = 'follow_user', on_delete = models.CASCADE)
     date = models.DateTimeField(auto_now_add = True)

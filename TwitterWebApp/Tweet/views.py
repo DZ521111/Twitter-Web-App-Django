@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Tweets, Comment, Preference
 from django.db.models import Count
 from django.contrib.auth.models import User, Group
@@ -42,7 +42,7 @@ class AllTweetView(LoginRequiredMixin, ListView):
             .order_by('-author_count')[:6]
 
         for aux in data_counter:
-            all_users.append(User.objects.filter(pk=aux['author']).first())
+            all_users.append(User.objects.filter(pk = aux['author']).first())
 
         data['preference'] = Preference.objects.all()
         data['all_users'] = all_users
@@ -114,7 +114,7 @@ class UserTweetView(LoginRequiredMixin, ListView):
 
 
 # class for view details of tweet
-class PostDetailView(DetailView):
+class TweetDetailView(DetailView):
     model = Tweets
     template_name = 'tweet_detail.html'
     context_object_name = 'post'
@@ -122,7 +122,7 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
 
-        comments_connected = Comment.objects.filter(post_connected = self.get_object()).order_by('-date_posted')
+        comments_connected = Comment.objects.filter(tweet_connected = self.get_object()).order_by('-date_posted')
         data['comments'] = comments_connected
         data['form'] = NewComment(instance = self.request.user)
         return (data)
@@ -130,7 +130,92 @@ class PostDetailView(DetailView):
     def post(self, request, *args, **kwargs):
         new_comment = Comment(content = request.POST.get('content'),
                                 author = self.request.user,
-                                post_connected = self.get_object())
+                                tweet_connected = self.get_object())
         new_comment.save()
 
         return (self.get(self, request, *args, **kwargs))
+
+
+
+class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Tweets
+    template_name = 'tweet_delete.html'
+    context_object_name = 'post'
+    success_url = '/'
+
+    def test(self):
+        return (is_users(self.get_object().author, self.request.user))
+
+
+
+
+class TweetCreateView(LoginRequiredMixin, CreateView):
+    model = Tweets
+    fields = ['content']
+    template_name = 'new_tweet_create.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return (super().form_valid(form))
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['tag_line'] = 'Add a New Tweet'
+        return (data)
+
+
+
+class TweetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Tweets
+    fields = ['content']
+    template_name = 'new_tweet_create.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return (super().form_valid(form))
+
+    def test_func(self):
+        return (is_users(self.get_object().author, self.request.user))
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['tag_line'] = 'Update a Tweet'
+        return (data)
+
+
+class FollowsListView(ListView):
+    model = Connection
+    template_name = 'follow_user.html'
+    context_object_name = 'follows'
+
+    def visible_user(self):
+        return (get_object_or_404(User, username = self.kwargs.get('username')))
+
+    def get_queryset(self):
+        user = self.visible_user()
+        return (Connection.objects.filter(user = user).order_by('-date'))
+
+    def get_context_data(self, *, object_list = None, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['follow'] = 'follows'
+        return (data)
+
+
+class FollowersListView(ListView):
+    model = Connection
+    template_name = 'follow_user.html'
+    context_object_name = 'follows'
+
+    def visible_user(self):
+        return (get_object_or_404(User, username = self.kwargs.get('username')))
+
+    def get_queryset(self):
+        user = self.visible_user()
+        return (Connection.objects.filter(follow_user = user).order_by('-date'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        data = super().get_context_data(**kwargs)
+        data['follow'] = 'followers'
+        return (data)

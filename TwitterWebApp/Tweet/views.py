@@ -33,6 +33,7 @@ class AllTweetView(LoginRequiredMixin, ListView):
 
     # get context data as a dictionary
     def get_context_data(self, **kwargs):
+        # call super class get_context_data method to get data
         data = super().get_context_data(**kwargs)
         all_users = []
         data_counter = Tweets.objects.values('author')\

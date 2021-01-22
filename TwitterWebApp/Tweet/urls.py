@@ -9,6 +9,6 @@ from . import views
 
 urlpatterns = [
      path('',  AllTweetView.as_view(), name='home_tweet_page'),
-     path('about/', views.aboutus, name='tweet_aboutus'),
+     path('aboutus/', views.aboutus, name='tweet_aboutus'),
      path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

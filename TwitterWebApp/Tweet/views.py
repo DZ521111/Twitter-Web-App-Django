@@ -167,6 +167,7 @@ class TweetCreateView(LoginRequiredMixin, CreateView):
 
 
 
+# class of updating tweet views
 class TweetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Tweets
     fields = ['content']

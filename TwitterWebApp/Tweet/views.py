@@ -187,6 +187,8 @@ class TweetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return (data)
 
 
+
+# class of view folowings for their perticular user
 class FollowingsListView(ListView):
     model = Connection
     template_name = 'follow_user.html'

@@ -221,7 +221,7 @@ class FollowersListView(ListView):
         user = self.visible_user()
         return (Connection.objects.filter(follow_user = user).order_by('-date'))
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list = None, **kwargs):
         data = super().get_context_data(**kwargs)
         data['follow'] = 'followers'
         return (data)

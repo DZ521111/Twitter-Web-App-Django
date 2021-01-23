@@ -1,3 +1,4 @@
+from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -5,7 +6,7 @@ from .models import Tweets, Comment, Preference
 from django.db.models import Count
 from django.contrib.auth.models import User, Group
 import sys
-from Users import Connection, User_Profile
+from Users.models import Connection, User_Profile
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .forms import NewComment
 
@@ -37,9 +38,7 @@ class AllTweetView(LoginRequiredMixin, ListView):
         # call super class get_context_data method to get data
         data = super().get_context_data(**kwargs)
         all_users = []
-        data_counter = Tweets.objects.values('author')\
-            .annotate(author_count = Count('author'))\
-            .order_by('-author_count')[:6]
+        data_counter = Tweets.objects.values('author').annotate(author_count = Count('author')).order_by('-author_count')[:6]
 
         for aux in data_counter:
             all_users.append(User.objects.filter(pk = aux['author']).first())
@@ -80,7 +79,7 @@ class UserTweetView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         visible_user = self.visible_user()
         logged_user = self.request.user
-        print(logged_user.username == '', file = sys.stderr)
+        print(logged_user.username == '', file = sys.stderr) 
 
         if ((logged_user.username == '') or (logged_user is None)):
             can_follow = False

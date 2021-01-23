@@ -137,7 +137,7 @@ class TweetDetailView(DetailView):
 
 
 
-# View of deleting tweets
+# View class of deleting tweets
 class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Tweets
     template_name = 'tweet_delete.html'
@@ -149,7 +149,7 @@ class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 
-
+# View class of tweet creation
 class TweetCreateView(LoginRequiredMixin, CreateView):
     model = Tweets
     fields = ['content']

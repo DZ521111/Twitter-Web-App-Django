@@ -70,7 +70,7 @@ def aboutus(request):
 # class for view user tweets
 class UserTweetView(LoginRequiredMixin, ListView):
     model = Tweets
-    template_name = 'user_posts.html'
+    template_name = 'user_tweets.html'
     context_object_name = 'posts'
     paginate_by = page_count
 
@@ -137,6 +137,7 @@ class TweetDetailView(DetailView):
 
 
 
+# View of deleting tweets
 class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Tweets
     template_name = 'tweet_delete.html'
@@ -185,7 +186,7 @@ class TweetUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return (data)
 
 
-class FollowsListView(ListView):
+class FollowingsListView(ListView):
     model = Connection
     template_name = 'follow_user.html'
     context_object_name = 'follows'

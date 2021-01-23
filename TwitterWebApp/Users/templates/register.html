@@ -19,12 +19,12 @@
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-primary" type="submit">Sign Up</button>
+            <div class="pt-3">
+                <small class="text-muted">
+                    Already Have An Account?<a class="ml-2" href="{% url 'login' %}">click here  </a> to login!
+                </small>
+            </div>
         </div>
     </form>
-    <div class="pt-3">
-        <small class="text-muted">
-            Already Have An Account?<a class="ml-2" href="{% url 'login' %}">click here  </a> to login!
-        </small>
-    </div>
 </div>
 {% endblock content %}

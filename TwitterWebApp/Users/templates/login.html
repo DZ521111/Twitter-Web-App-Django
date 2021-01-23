@@ -31,14 +31,14 @@
           {{ form | crispy }}
         </fieldset>
         <div class="form-group">
-          <button class="btn btn-outline-primary" type="submit">Sign in</button>
+          <button class="btn btn-outline-primary" type="submit">Sign In</button>
+          <div class="pt-3">
+            <small class="text-muted">
+              If you don't have account<a class="ml-2" href="{% url 'register_page' %}">click here</a>  to register!
+            </small>
+          </div>
         </div>
       </form>
-      <div class="pt-3">
-        <small class="text-muted">
-          If you don't have account<a class="ml-2" href="{% url 'register_page' %}">click here</a>  to register!
-        </small>
-      </div>
     </div>
     {% endblock %}
 

@@ -207,6 +207,8 @@ class FollowingsListView(ListView):
         return (data)
 
 
+
+# Class view of displayinf followers of their perticular user
 class FollowersListView(ListView):
     model = Connection
     template_name = 'follow_user.html'

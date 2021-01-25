@@ -1,3 +1,8 @@
+'''
+Author : Dhruv B Kakadiya
+
+'''
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Preference
 from users.models import Follow

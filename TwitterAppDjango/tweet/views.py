@@ -24,7 +24,7 @@ def is_users(post_user, logged_user):
 
 PAGINATION_COUNT = 3
 
-
+#View class to See all Tweets
 class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'tweet/home.html'

@@ -3,7 +3,7 @@
 {% block content %}
     <div class="row">
         <div class="col-12 col-md-3 pr-4 dont-move">
-            <a href="/"> <h2><img class="img-fluid" width="60" src="{% static 'tweet/logo.png' %}">Twitter</h2></a><br>
+            <a href="/"> <h2 align="center"><img class="img-fluid" width="60" src="{% static 'tweet/logo.png' %}">Twitter</h2></a><br>
             <div class="profile-section">
             <h3 class="white-important p-2">
                 Profile
@@ -214,12 +214,12 @@
                 </form>
             </div>
         </div>
-            <h3 class="white-important mb-3 mt-4"> Trendings </h3>
+            <h3 class="white-important mb-3 mt-4" align = "center"> Suggestions </h3>
                 {%  if user_profile is None %}
                 <article class="t-section media content-section">
                     <div class="row ">
                         <div class="col-12">
-                            <h3>Who to Follow</h3>
+                            <h3>Other Users</h3>
                         </div>
                         <ul class="col-12 mt-2">
                             {% for user in all_users %}

@@ -3,6 +3,7 @@ Author : Dhruv B Kakadiya
 
 '''
 
+
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment, Preference
 from users.models import Follow
@@ -28,6 +29,7 @@ def is_users(post_user, logged_user):
 
 
 PAGINATION_COUNT = 3
+
 
 #View class to See all Tweets
 class PostListView(LoginRequiredMixin, ListView):

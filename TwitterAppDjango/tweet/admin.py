@@ -1,3 +1,8 @@
+'''
+Author : Dhruv B Kakadiya
+
+'''
+
 from django.contrib import admin
 from .models import Post, Comment, Preference
 
